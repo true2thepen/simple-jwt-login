@@ -144,7 +144,7 @@ abstract class BaseService
         if (!isset($payload[$parameter])) {
             throw new Exception(
                 sprintf(
-                    __('Unable to find user %s property in JWT.', 'simple-jwt-login'),
+                    __('Ensure JWT parameter key is set in Login settings.', 'simple-jwt-login'),
                     $parameter
                 ),
                 ErrorCodes::ERR_JWT_PARAMETER_FOR_USER_NOT_FOUND
