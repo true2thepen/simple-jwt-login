@@ -455,5 +455,15 @@ if (!defined('ABSPATH')) {
             );
             ?>
         </p>
+        <p class="simple-jwt-error">
+            * <?php
+            echo __(
+                'Turning both SESSION and COOKIE off and turning on Protect all endpoints'
+                . ' will result in WordPress being unable'
+                . ' to perform some actions - for instance, add new Posts.',
+                'simple-jwt-login'
+            );
+            ?>
+        </p>
     </div>
 </div>
