@@ -270,6 +270,9 @@ When an endpoint is protected, and you don't provide a JWT, you will get the fol
 }
 ``
 
+**WARNING:** Turning off both SESSION and COOKIE under the General tab and turning on Protect all endpoints will result in WordPress being unable to perform certain actions - for instance, add new Posts.
+
+
 == Integration ==
 
 In order to easily integrate your app/site with simple-jwt-login, we have developed a composer package.
