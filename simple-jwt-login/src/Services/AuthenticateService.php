@@ -128,7 +128,7 @@ class AuthenticateService extends BaseService implements ServiceInterface
             if (!$passRoleCheck) {
                 throw new Exception(
                     __('User role not allowed.', 'simple-jwt-login'),
-                    ErrorCodes::AUTHENTICATION_WRONG_ROLE
+                    ErrorCodes::AUTHENTICATION_ROLE_DISABLED
                 );
             }
         }
