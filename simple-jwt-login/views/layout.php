@@ -162,7 +162,7 @@ $settingsPages = [
 				    $index = $page['index'];
 				    $isActive = (empty($errorCode) && ($activeTab === $page['index']))
 					    ||  $settingsErrors->getSectionFromErrorCode($errorCode) === $index
-			    ?>
+			    	?>
 			    <li class="nav-item">
 				    <a class="nav-link <?php echo $isActive ? 'active' : ''?>"
 				       id="<?php echo esc_attr($page['id']); ?>-tab"
@@ -175,12 +175,11 @@ $settingsPages = [
 				       title="<?php echo esc_attr($page['name']); ?>"
 				       >
 					    <?php
-				    if ($page['has_error']) {
+				    		if ($page['has_error']) {
+						    echo '<span class="simple-jwt-error">!</span>';
+					    	}
+				    		echo esc_html($page['name']);
 					    ?>
-					    <span class="simple-jwt-error">!</span>
-					    <?php
-				    }
-				    echo esc_html($page['name']); ?>
 				    </a>
 			    </li>
 			    <?php
