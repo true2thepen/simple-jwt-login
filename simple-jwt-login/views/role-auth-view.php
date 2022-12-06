@@ -82,13 +82,13 @@ $result = count_users();
                                         
                                     </span>
                                     <label class="bold" for="role_auth_<?php echo esc_attr($roleName);?>">
-					    <?php
-						echo esc_attr($roleName) . ' ';
-						echo $roleCount . ' user';
-                                        	if ($roleCount !== 1) {
-							echo 's';
-						}
-					    ?>
+						    <?php
+							echo esc_attr($roleName) . ' ';
+							echo $roleCount . ' user';
+           	       		                      	if ($roleCount !== 1) {
+								echo 's';
+							}
+					  	    ?>
                                     </label>
                                 </div>
                             </div>
