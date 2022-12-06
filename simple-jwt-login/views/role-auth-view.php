@@ -5,7 +5,6 @@ use SimpleJWTLogin\Modules\Settings\SettingsErrors;
 use SimpleJWTLogin\Modules\SimpleJWTLoginSettings;
 use SimpleJWTLogin\Services\RouteService;
 
-
 if (! defined('ABSPATH')) {
     /** @phpstan-ignore-next-line  */
     exit;
@@ -56,7 +55,6 @@ $result = count_users();
 						<?php
 
                         foreach ($wpRoles->roles as $roleIndex => $role) {
-
                             $roleName = strtolower($role['name']);
 
                             $roleCount = $result['avail_roles'][$roleName] ? $result['avail_roles'][$roleName] : 0;
@@ -87,7 +85,9 @@ $result = count_users();
                                         <?php
 										echo esc_attr($roleName) . ' ';
 										echo $roleCount . ' user';
-                                        if ($roleCount !== 1){ echo 's';}
+                                        if ($roleCount !== 1) {
+						echo 's';
+					}
 										?>
                                     </label>
                                 </div>
