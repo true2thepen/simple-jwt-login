@@ -113,7 +113,26 @@ class AuthenticateService extends BaseService implements ServiceInterface
                 ErrorCodes::AUTHENTICATION_WRONG_CREDENTIALS
             );
         }
-
+        
+        // check if user role enabled
+        if ($this->jwtSettings->getAuthenticationSettings()->isRoleAuthenticationEnabled()) {
+            $userRoles = $this->wordPressData->getUserRoles($user);
+            $passRoleCheck = false;
+            
+            foreach ($userRoles as $userRole) {
+                if ($this->jwtSettings->getAuthenticationSettings()->isRoleEnabled($userRole)) {
+                    $passRoleCheck = true;
+                }
+            }
+            
+            if (!$passRoleCheck) {
+                throw new Exception(
+                    __('User role not allowed.', 'simple-jwt-login'),
+                    ErrorCodes::AUTHENTICATION_WRONG_ROLE
+                );
+            }
+        }
+        
         $password = isset($this->request['password'])
             ? $this->wordPressData->sanitizeTextField($this->request['password'])
             : null;
