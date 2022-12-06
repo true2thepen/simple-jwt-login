@@ -157,143 +157,142 @@ $settingsPages = [
             <div class="row">
                 <div class="col-md-2 mb-3">
                     <ul class="nav nav-pills flex-column nav-tabs" id="simple-jwt-login-tabs" role="tablist">
-						<?php
-                        foreach ($settingsPages as $page) {
-                            $index = $page['index'];
-                            $isActive = (empty($errorCode) && ($activeTab === $page['index']))
-                                ||  $settingsErrors->getSectionFromErrorCode($errorCode) === $index
-                            ?>
-                            <li class="nav-item">
-                                <a class="nav-link <?php echo $isActive ? 'active' : ''?>"
-                                   id="<?php echo esc_attr($page['id']); ?>-tab"
-                                   data-toggle="tab"
-                                   data-index="<?php echo esc_html($index);?>"
-                                   href="#<?php echo esc_attr($page['id']); ?>"
-                                   role="tab"
-                                   aria-controls="<?php echo esc_attr($page['id']); ?>"
-                                   aria-selected="true"
-                                   title="<?php echo esc_attr($page['name']); ?>"
-                                >
-                                    <?php
-                                    if ($page['has_error']) {
-                                        ?>
-                                        <span class="simple-jwt-error">!</span>
-                                        <?php
-                                    }
-
-                                    echo esc_html($page['name']); ?>
-                                </a>
-                            </li>
-							<?php
-                        }
-                        ?>
-                    </ul>
-                </div>
-
-                <div class="col-md-10">
-                    <div class="tab-content card-shadow" id="simple-jwt-login-tab-content">
-						<?php
-                        foreach ($settingsPages as $page) {
-                            $index = $page['index'];
-                            $isActive = (empty($errorCode) && ($activeTab === $page['index']))
-                                ||  $settingsErrors->getSectionFromErrorCode($errorCode) === $index
-                            ?>
-                            <div class="tab-pane fade <?php echo $isActive ? 'active' : '' ?> show"
-                                 id="<?php echo esc_attr($page['id']); ?>"
-                                 role="tabpanel"
-                                 aria-labelledby="<?php echo esc_attr($page['id']); ?>-tab"
-                            >
-								<?php
-                                switch ($page['index']) {
-					case SettingsErrors::PREFIX_DASHBOARD:
-						include_once plugin_dir_path(__FILE__) . "dashboard-view.php";
-						break;
-                                    	case SettingsErrors::PREFIX_GENERAL:
-                                        	include_once plugin_dir_path(__FILE__) . "general-view.php";
-                                        	break;
-                                    	case SettingsErrors::PREFIX_LOGIN:
-                                        	include_once plugin_dir_path(__FILE__) . "login-view.php";
-                                        	break;
-                                    	case SettingsErrors::PREFIX_REGISTER:
-                                        	include_once plugin_dir_path(__FILE__) . "register-view.php";
-                                        	break;
-                                    	case SettingsErrors::PREFIX_DELETE:
-                                        	include_once plugin_dir_path(__FILE__) . "delete-view.php";
-                                        	break;
-                                    	case SettingsErrors::PREFIX_RESET_PASSWORD:
-                                        	include_once plugin_dir_path(__FILE__) . "reset-password-view.php";
-                                        	break;
-                                    	case SettingsErrors::PREFIX_AUTHENTICATION:
-                                        	include_once plugin_dir_path(__FILE__) . "auth-view.php";
-                                        	break;
-                                    	case SettingsErrors::PREFIX_AUTH_CODES:
-                                        	include_once plugin_dir_path(__FILE__) . "auth-codes-view.php";
-                                        	break;
-                                    	case SettingsErrors::PREFIX_HOOKS:
-                                        	include_once plugin_dir_path(__FILE__) . "hooks-view.php";
-                                        	break;
-                                    	case SettingsErrors::PREFIX_CORS:
-                                        	include_once plugin_dir_path(__FILE__) . "cors-view.php";
-                                        	break;
-                                    	case SettingsErrors::PREFIX_PROTECT_ENDPOINTS:
-                                        	include_once plugin_dir_path(__FILE__) . "protect-endpoints-view.php";
-                                        	break;
-					case SettingsErrors::PREFIX_ROLE_AUTHENTICATION:
-                                        	include_once plugin_dir_path(__FILE__) . "role-auth-view.php";
-                                        	break;
-                                    	default:
-                                        	echo __("View file does not exists.", 'simple-jwt-login');
-                                }
-                                ?>
-                            </div>
-							<?php
-                        }
-                        ?>
-                    </div>
-                </div>
-                <!-- /.col-md-8 -->
-            </div>
-        </div>
-        <!-- /.container -->
-    </div>
+			    <?php
+			    foreach ($settingsPages as $page) {
+				    $index = $page['index'];
+				    $isActive = (empty($errorCode) && ($activeTab === $page['index']))
+					    ||  $settingsErrors->getSectionFromErrorCode($errorCode) === $index
+			    ?>
+			    <li class="nav-item">
+				    <a class="nav-link <?php echo $isActive ? 'active' : ''?>"
+				       id="<?php echo esc_attr($page['id']); ?>-tab"
+				       data-toggle="tab"
+				       data-index="<?php echo esc_html($index);?>"
+				       href="#<?php echo esc_attr($page['id']); ?>"
+				       role="tab"
+				       aria-controls="<?php echo esc_attr($page['id']); ?>"
+				       aria-selected="true"
+				       title="<?php echo esc_attr($page['name']); ?>"
+				       >
+					    <?php
+				    if ($page['has_error']) {
+					    ?>
+					    <span class="simple-jwt-error">!</span>
+					    <?php
+				    }
+				    echo esc_html($page['name']); ?>
+				    </a>
+			    </li>
+			    <?php
+			    }
+			    ?>
+			</ul>
+		    </div>
+		    <div class="col-md-10">
+			    <div class="tab-content card-shadow" id="simple-jwt-login-tab-content">
+				    <?php
+				    foreach ($settingsPages as $page) {
+					    $index = $page['index'];
+					    $isActive = (empty($errorCode) && ($activeTab === $page['index']))
+						    ||  $settingsErrors->getSectionFromErrorCode($errorCode) === $index
+				    ?>
+				    <div class="tab-pane fade <?php echo $isActive ? 'active' : '' ?> show"
+					 id="<?php echo esc_attr($page['id']); ?>"
+					 role="tabpanel"
+					 aria-labelledby="<?php echo esc_attr($page['id']); ?>-tab"
+					 >
+					    <?php
+					    switch ($page['index']) {
+						    case SettingsErrors::PREFIX_DASHBOARD:
+							    include_once plugin_dir_path(__FILE__) . "dashboard-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_GENERAL:
+							    include_once plugin_dir_path(__FILE__) . "general-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_LOGIN:
+							    include_once plugin_dir_path(__FILE__) . "login-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_REGISTER:
+							    include_once plugin_dir_path(__FILE__) . "register-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_DELETE:
+							    include_once plugin_dir_path(__FILE__) . "delete-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_RESET_PASSWORD:
+							    include_once plugin_dir_path(__FILE__) . "reset-password-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_AUTHENTICATION:
+							    include_once plugin_dir_path(__FILE__) . "auth-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_AUTH_CODES:
+							    include_once plugin_dir_path(__FILE__) . "auth-codes-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_HOOKS:
+							    include_once plugin_dir_path(__FILE__) . "hooks-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_CORS:
+							    include_once plugin_dir_path(__FILE__) . "cors-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_PROTECT_ENDPOINTS:
+							    include_once plugin_dir_path(__FILE__) . "protect-endpoints-view.php";
+							    break;
+						    case SettingsErrors::PREFIX_ROLE_AUTHENTICATION:
+							    include_once plugin_dir_path(__FILE__) . "role-auth-view.php";
+							    break;
+						    default:
+							    echo __("View file does not exists.", 'simple-jwt-login');
+					    }
+					    ?>
+				    </div>
+				    <?php
+				    }
+				    ?>
+			    </div>
+		    </div>
+		    <!-- /.col-md-8 -->
+		</div>
+	    </div>
+	    <!-- /.container -->
+	</div>
 </form>
 
 
 <div id="code_line" style="display:none">
-    <div class="form-group auth_row">
-        <div class="input-group">
-            <input type="text"
-                   name="auth_codes[code][]"
-                   class="form-control"
-                   placeholder="<?php  echo __('Authentication Key', 'simple-jwt-login') ;?>"
-            />
-            <input type="text"
-                   name="auth_codes[role][]"
-                   class="form-control"
-                   placeholder="<?php
-                       echo __(
-                           'WordPress new user Role ( when new users are created )',
-                           'simple-jwt-login'
-                       );
-                        ?>"
-            />
-            <input type="text"
-                   name="auth_codes[expiration_date][]"
-                   class="form-control"
-                   placeholder="<?php  echo __(
-                       'Expiration date: YYYY-MM-DD HH:MM:SS ( Example: 2020-12-23 23:34:59)',
-                       'simple-jwt-login'
-                   ) ;?>"
-            />
-            <div class="input-group-addon auth-code-delete-container">
-                <a href="javascript:void(0)"
-                   onclick="jwt_login_remove_auth_line(jQuery(this));"
-                   title="<?php  echo __('delete', 'simple-jwt-login') ;?>"
-                >
-                    <i class="delete-auth-code" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
+	<div class="form-group auth_row">
+		<div class="input-group">
+			<input type="text"
+			       name="auth_codes[code][]"
+			       class="form-control"
+			       placeholder="<?php  echo __('Authentication Key', 'simple-jwt-login') ;?>"
+			       />
+			<input type="text"
+			       name="auth_codes[role][]"
+			       class="form-control"
+			       placeholder="<?php
+					    echo __(
+						    'WordPress new user Role ( when new users are created )',
+						    'simple-jwt-login'
+					    );
+					    ?>"
+			       />
+			<input type="text"
+			       name="auth_codes[expiration_date][]"
+			       class="form-control"
+			       placeholder="<?php
+					    echo __(
+						    'Expiration date: YYYY-MM-DD HH:MM:SS ( Example: 2020-12-23 23:34:59)',
+						    'simple-jwt-login'
+					    );
+					    ?>"
+			       />
+			<div class="input-group-addon auth-code-delete-container">
+				<a href="javascript:void(0)"
+				   onclick="jwt_login_remove_auth_line(jQuery(this));"
+				   title="<?php  echo __('delete', 'simple-jwt-login') ;?>"
+				   >
+					<i class="delete-auth-code" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</div>
 </div>
-
