@@ -15,9 +15,11 @@ if (! defined('ABSPATH')) {
  * @var SimpleJWTLoginSettings $jwtSettings
  */
 
-
+/** @phpstan-ignore-next-line  */
 global $wp_roles;
+/** @phpstan-ignore-next-line  */
 $wpRoles = $wp_roles;
+/** @phpstan-ignore-next-line  */
 $result = count_users();
 
 ?>
