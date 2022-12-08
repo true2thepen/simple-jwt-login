@@ -13,11 +13,11 @@ if (! defined('ABSPATH')) {
 /**
  * @var SettingsErrors $settingsErrors
  * @var SimpleJWTLoginSettings $jwtSettings
+ * @var WPRole $wp_roles
  */
 
 /** @phpstan-ignore-next-line  */
 global $wp_roles;
-/** @phpstan-ignore-next-line  */
 $wpRoles = $wp_roles;
 /** @phpstan-ignore-next-line  */
 $result = count_users();
