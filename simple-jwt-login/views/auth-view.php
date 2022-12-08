@@ -506,3 +506,30 @@ if (! defined('ABSPATH')) {
     </div>
 </div>
 <hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="section-title">
+            <?php
+            echo __(
+                'Allow Role Authentication',
+                'simple-jwt-login'
+            );
+            ?>:
+        </h3>
+        <div class="form-group">
+            <input type="checkbox" id="allow_role_authentication" name="allow_role_authentication" class="form-control"
+                   value="1"
+				<?php
+                echo $jwtSettings->getAuthenticationSettings()->isRoleAuthenticationEnabled() === false
+                    ? 'checked'
+                    : '';
+                ?>
+            />
+            <label for="allow_authentication_no">
+				<?php echo __('Role Authentication Enabled', 'simple-jwt-login'); ?>
+            </label>
+        </div>
+    </div>
+</div>
+<hr />
