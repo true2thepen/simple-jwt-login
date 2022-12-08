@@ -14,12 +14,6 @@ if (! defined('ABSPATH')) {
  * @var SimpleJWTLoginSettings $jwtSettings
  */
 
-/** @phpstan-ignore-next-line  */
-global $wp_roles;
-$wpRoles = $wp_roles;
-/** @phpstan-ignore-next-line  */
-$result = count_users();
-
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -508,105 +502,6 @@ $result = count_users();
                 <br/>
                 <?php echo __('Leave blank to allow all IP addresses', 'simple-jwt-login'); ?>.
             </p>
-        </div>
-    </div>
-</div>
-<hr />
-
-<div class="row">
-    <div class="col-md-12">
-        <h3 class="section-title">
-            <?php
-            echo __(
-                'Allow Role Authentication',
-                'simple-jwt-login'
-            );
-            ?>:
-        </h3>
-        <div class="form-group">
-            <input
-                type="checkbox"
-                name="role_authentication_enabled"
-                id="role_authentication_enabled"
-                value="1"
-                style="margin-top:1px;"
-            <?php echo $jwtSettings->getAuthenticationSettings()->isRoleAuthenticationEnabled()
-                ? esc_html('checked="checked"')
-                : '';
-            ?>
-
-        />
-        <label for="role_authentication_enabled">
-            <b><?php echo __('Role authentication', 'simple-jwt-login'); ?></b>
-        </label>
-        </div>
-    </div>
-</div>
-<hr />
-
-<div class="row">
-    <div class="col-md-12">
-        <h3 class="section-title">
-            <?php
-            echo __(
-                'Allowed Roles',
-                'simple-jwt-login'
-            );
-            ?>:
-        </h3>
-        <div id="authentication_role_data" class="authentication_jwt_container">
-        <div>
-                <div>
-                    
-						<?php
-                        foreach ($wpRoles->roles as $roleIndex => $role) {
-                            $numberOfLines = count($wpRoles->roles) - 1;
-                            $lineSeparator = $numberOfLines === $roleIndex
-                                ? ''
-                                : ',';
-                            $roleName = strtolower($role['name']);
-                            $roleCount = $result['avail_roles'][$roleName] ? $result['avail_roles'][$roleName] : 0;
-                            ?>
-                            <div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <span class="checkbox">
-                                        
-                                            <input
-                                                    type="checkbox"
-                                                    id="role_auth_<?php echo esc_attr($roleName); ?>"
-                                                    name="role_auth[]"
-                                                    value="<?php echo esc_attr($roleName); ?>"
-                                                    <?php
-                                                    echo esc_html(
-                                                        $jwtSettings
-                                                            ->getAuthenticationSettings()
-                                                            ->isRoleEnabled($roleName)
-                                                            ? 'checked'
-                                                            : ''
-                                                    )
-                                                    ?>
-                                            />
-                                        
-                                    </span>
-                                    <label class="bold" for="role_auth_<?php echo esc_attr($roleName);?>">
-                                        <?php
-										echo esc_attr($roleName) . ' ';
-										echo $roleCount . ' user';
-                                        if ($roleCount !== 1) {
-                                            echo 's';
-                                        }
-										?>
-                                    </label>
-                                </div>
-                            </div>
-                                    </div>
-							<?php
-                        }
-                        ?>
-                    
-                </div>
-            </div>
         </div>
     </div>
 </div>
