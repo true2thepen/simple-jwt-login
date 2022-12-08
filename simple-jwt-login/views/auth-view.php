@@ -4,7 +4,7 @@ use SimpleJWTLogin\Modules\Settings\AuthenticationSettings;
 use SimpleJWTLogin\Modules\Settings\SettingsErrors;
 use SimpleJWTLogin\Modules\SimpleJWTLoginSettings;
 use SimpleJWTLogin\Services\RouteService;
-use WP_Roles;
+// use WP_Roles;
 
 if (! defined('ABSPATH')) {
     /** @phpstan-ignore-next-line  */
@@ -13,10 +13,10 @@ if (! defined('ABSPATH')) {
 /**
  * @var SettingsErrors $settingsErrors
  * @var SimpleJWTLoginSettings $jwtSettings
- * @var WP_Roles $wp_roles
  */
 
-//global $wp_roles;
+/** @phpstan-ignore-next-line  */
+global $wp_roles;
 $wpRoles = $wp_roles;
 /** @phpstan-ignore-next-line  */
 $result = count_users();
