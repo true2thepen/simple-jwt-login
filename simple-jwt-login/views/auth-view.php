@@ -4,7 +4,7 @@ use SimpleJWTLogin\Modules\Settings\AuthenticationSettings;
 use SimpleJWTLogin\Modules\Settings\SettingsErrors;
 use SimpleJWTLogin\Modules\SimpleJWTLoginSettings;
 use SimpleJWTLogin\Services\RouteService;
-use WPRole;
+use WPRoles;
 
 if (! defined('ABSPATH')) {
     /** @phpstan-ignore-next-line  */
@@ -13,7 +13,7 @@ if (! defined('ABSPATH')) {
 /**
  * @var SettingsErrors $settingsErrors
  * @var SimpleJWTLoginSettings $jwtSettings
- * @var WPRole $wp_roles
+ * @var WPRoles $wp_roles
  */
 
 //global $wp_roles;
