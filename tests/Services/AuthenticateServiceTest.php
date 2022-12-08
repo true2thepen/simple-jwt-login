@@ -346,4 +346,29 @@ class AuthenticateServiceTest extends TestCase
         $result = $authService->makeAction();
         $this->assertTrue($result);
     }
+    
+        public function testUserWithDisabledRole()
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('User role not allowed.');
+        $this->wordPressDataMock->method('getOptionFromDatabase')
+            ->willReturn(json_encode([
+                'allow_authentication' => 1,
+                'role_authentication_enabled' => 1,
+                'role_auth' => '["administrator"],
+            ]));
+        $this->wordPressDataMock->method('getUserDetailsByEmail')
+            ->willReturn(user);
+        $this->wordPressDataMock->method('isRoleEnabled')
+            ->willReturn(false);
+        $authService = (new AuthenticateService())
+            ->withRequest([
+                'email' => 'test@test.com',
+                'password' => '123'
+            ])
+            ->withCookies([])
+            ->withServerHelper(new ServerHelper([]))
+            ->withSettings(new SimpleJWTLoginSettings($this->wordPressDataMock));
+        $authService->makeAction();
+    }
 }
