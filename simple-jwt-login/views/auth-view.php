@@ -585,7 +585,7 @@ if (! defined('ABSPATH')) {
                                         <?php
 										echo esc_attr($roleName) . ' ';
 										echo $roleCount . ' user';
-                                        if ($roleCount !== 1){
+                                        if ($roleCount !== 1) {
                                             echo 's';
                                         }
 										?>
