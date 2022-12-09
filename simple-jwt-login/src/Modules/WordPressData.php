@@ -444,6 +444,10 @@ class WordPressData implements WordPressDataInterface
     }
     
     /**
+     * @since 3.5.0.
+     *
+     * @var array Roles array.
+     *
      * @return array Roles array.
      */
     /** * @SuppressWarnings(PHPMD.Superglobals) */
