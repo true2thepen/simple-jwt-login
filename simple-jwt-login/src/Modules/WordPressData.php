@@ -448,7 +448,7 @@ class WordPressData implements WordPressDataInterface
      * @ignore
      * @since 3.5.0
      *
-     * @global $GLOBALS array Roles.
+     * @global array $GLOBALS['wp_roles'] array Roles.
      *
      * @return array Roles array.
      */
