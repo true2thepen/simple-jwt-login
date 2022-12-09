@@ -448,13 +448,13 @@ class WordPressData implements WordPressDataInterface
      *
      * @since 3.5.0
      *
-     * @member WP_Roles $GLOBALS['wp_roles'] Roles.
+     * @member WP_Roles $wp_roles Roles.
      *
      * @return array Roles.
      */
     /** * @SuppressWarnings(PHPMD.Superglobals) */
     public function getRoles();
     {
-        return $GLOBALS['wp_roles'];
+        return $wp_roles;
     }
 }
