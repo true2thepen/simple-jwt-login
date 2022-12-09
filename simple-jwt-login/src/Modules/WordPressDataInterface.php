@@ -4,6 +4,7 @@ namespace SimpleJWTLogin\Modules;
 use Exception;
 use WP_REST_Response;
 use WP_User;
+use WP_Roles;
 
 interface WordPressDataInterface
 {
@@ -269,4 +270,10 @@ interface WordPressDataInterface
      * @return array
      */
     public function getUserRoles($user);
+    
+    /**
+     * @return array
+     */
+    public function getRoles();
+    
 }
