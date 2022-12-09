@@ -6,6 +6,7 @@ use Exception;
 use SimpleJWTLogin\ErrorCodes;
 use WP_REST_Response;
 use WP_User;
+use WP_Roles;
 
 class WordPressData implements WordPressDataInterface
 {
@@ -431,7 +432,7 @@ class WordPressData implements WordPressDataInterface
 
     /**
      * @param WP_User $user
-     * @return array
+     * @return array Roles array.
      */
     public function getUserRoles($user)
     {
@@ -440,5 +441,20 @@ class WordPressData implements WordPressDataInterface
         }
 
         return [];
+    }
+    
+    /**
+     * WP Roles.
+     *
+     * @since 3.5.0
+     *
+     * @member WP_Roles $wp_roles Roles.
+     *
+     * @return array Roles.
+     */
+    /** * @SuppressWarnings(PHPMD.Superglobals) */
+    public function getRoles();
+    {
+        return $wp_roles;
     }
 }

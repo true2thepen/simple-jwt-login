@@ -13,6 +13,13 @@ if (! defined('ABSPATH')) {
  * @var SettingsErrors $settingsErrors
  * @var SimpleJWTLoginSettings $jwtSettings
  */
+
+/** @phpstan-ignore-next-line  */
+global $wp_roles;
+$wpRoles = $wp_roles;
+/** @phpstan-ignore-next-line  */
+$result = count_users();
+
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -505,3 +512,95 @@ if (! defined('ABSPATH')) {
     </div>
 </div>
 <hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="section-title">
+            <?php
+            echo __(
+                'Allow Role Authentication',
+                'simple-jwt-login'
+            );
+            ?>:
+        </h3>
+        <div class="form-group">
+            <input type="checkbox" id="allow_role_authentication" name="allow_role_authentication" class="form-control"
+                   value="1"
+				<?php
+                echo $jwtSettings->getAuthenticationSettings()->isRoleAuthenticationEnabled() === false
+                    ? 'checked'
+                    : '';
+                ?>
+            />
+            <label for="allow_authentication_no">
+				<?php echo __('Role Authentication Enabled', 'simple-jwt-login'); ?>
+            </label>
+        </div>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="section-title">
+            <?php
+            echo isset($errorCode)
+            && $settingsErrors->generateCode(
+                SettingsErrors::PREFIX_AUTHENTICATION,
+                SettingsErrors::ERR_AUTHENTICATION_EMPTY_PAYLOAD
+            ) === $errorCode
+                ? '<span class="simple-jwt-error">!</span>'
+                : ''
+            ?>
+            <?php echo __('Roles Allowed', 'simple-jwt-login'); ?>
+        </h3>
+        <div id="authentication_role_data" class="authentication_jwt_container">
+        
+                    
+						<?php
+                        foreach ($wpRoles->roles as $roleIndex => $role) {
+                            $numberOfLines = count($wpRoles->roles) - 1;
+                            $lineSeparator = $numberOfLines === $roleIndex
+                                ? ''
+                                : ',';
+                            $roleName = strtolower($role['name']);
+                            $roleCount = $result['avail_roles'][$roleName] ? $result['avail_roles'][$roleName] : 0;
+                            ?>
+                            <div class="card">
+                                <div class="card-header">
+                                    <span class="checkbox">
+                                        
+                                            <input
+                                                    type="checkbox"
+                                                    id="role_auth_<?php echo esc_attr($roleName); ?>"
+                                                    name="role_auth[]"
+                                                    value="<?php echo esc_attr($roleName); ?>"
+                                                    <?php
+                                                    echo esc_html(
+                                                        $jwtSettings
+                                                            ->getAuthenticationSettings()
+                                                            ->isRoleEnabled($roleName)
+                                                            ? 'checked'
+                                                            : ''
+                                                    )
+                                                    ?>
+                                            />
+                                        
+                                    </span>
+                                    <label class="bold" for="role_auth_<?php echo esc_attr($roleName);?>">
+                                        <?php
+										echo esc_attr($roleName) . ' ';
+										echo $roleCount . ' user';
+                                        if ($roleCount !== 1) {
+                                            echo 's';
+                                        }
+										?>
+                                    </label>
+                                </div>
+                            </div>
+                                    </div>
+							<?php
+                        }
+                        ?>
+    </div>
+</div>
