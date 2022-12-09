@@ -447,6 +447,6 @@ class WordPressData implements WordPressDataInterface
      */
     public function getSiteRoles();
     {
-        return $wp_roles();
+        return isset($GLOBALS['wp_roles']);
     }
 }
