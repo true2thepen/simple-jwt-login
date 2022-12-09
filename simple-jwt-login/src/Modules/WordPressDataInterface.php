@@ -274,6 +274,5 @@ interface WordPressDataInterface
     /**
      * @return array
      */
-    public function getRoles();
-    
+    public function getRoles();    
 }
