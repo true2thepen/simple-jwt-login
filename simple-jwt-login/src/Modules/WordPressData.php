@@ -432,7 +432,7 @@ class WordPressData implements WordPressDataInterface
 
     /**
      * @param WP_User $user
-     * @return array
+     * @return array Roles array.
      */
     public function getUserRoles($user)
     {
