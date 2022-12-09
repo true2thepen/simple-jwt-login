@@ -441,4 +441,12 @@ class WordPressData implements WordPressDataInterface
 
         return [];
     }
+    
+    /**
+     * @return array
+     */
+    public function getSiteRoles();
+    {
+        return $wp_roles();
+    }
 }
